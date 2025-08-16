@@ -1,0 +1,13 @@
+# Commands to run after creating GitHub repository
+# Replace 'yourusername' with your actual GitHub username
+
+cd "C:\Users\dsber\Code\Transcript Analysis\report-interface"
+
+# Add your GitHub repository as remote origin
+git remote add origin https://github.com/yourusername/report-generator-interface.git
+
+# Push your code to GitHub
+git push -u origin main
+
+# Verify the push worked
+git remote -v
