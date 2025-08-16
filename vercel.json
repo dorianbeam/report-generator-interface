@@ -1,4 +1,6 @@
 {
+  "buildCommand": "echo 'Static files ready for deployment'",
+  "outputDirectory": ".",
   "functions": {
     "api/airtable-proxy.js": {
       "maxDuration": 30
