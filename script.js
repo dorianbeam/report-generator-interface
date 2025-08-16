@@ -17,6 +17,9 @@ class ReportGenerator {
         this.loadCategories();
         this.setDefaultDates();
         this.updateFormVisibility();
+        this.loadDashboardData();
+        this.setupFilterPresets();
+        this.setupAutomationToggle();
     }
     
     bindEvents() {
@@ -531,6 +534,79 @@ class ReportGenerator {
                 item.classList.add('hidden');
             }
         });
+    }
+
+    // Load and display dashboard data
+    async loadDashboardData() {
+        try {
+            // Simulate API calls with sample data for now
+            // In production, these would be real API calls
+            
+            // Academy Knowledge metrics
+            document.getElementById('knowledgeCount').textContent = '1,247';
+            document.getElementById('confidenceValue').textContent = '0.87';
+            setTimeout(() => {
+                const confidenceFill = document.getElementById('knowledgeConfidence');
+                if (confidenceFill) confidenceFill.style.width = '87%';
+            }, 500);
+
+            // UX Issues metrics
+            document.getElementById('uxIssuesCount').textContent = '89';
+            document.getElementById('criticalIssues').textContent = '12';
+            document.getElementById('highIssues').textContent = '23';
+
+            // AI Insights metrics
+            document.getElementById('insightsCount').textContent = '34';
+            const sentimentBadge = document.getElementById('sentimentBadge');
+            sentimentBadge.textContent = 'Positive';
+            sentimentBadge.className = 'sentiment-badge positive';
+
+            // Knowledge Graph metrics  
+            document.getElementById('entitiesCount').textContent = '456';
+            document.getElementById('criticalEntities').textContent = '8';
+            document.getElementById('highEntities').textContent = '24';
+
+        } catch (error) {
+            console.warn('Could not load dashboard data:', error);
+        }
+    }
+
+    // Setup filter preset buttons
+    setupFilterPresets() {
+        const presetButtons = document.querySelectorAll('.filter-preset');
+        const filterTextarea = document.getElementById('advancedFilters');
+
+        presetButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                presetButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                button.classList.add('active');
+                
+                // Set the filter value
+                const filterData = button.getAttribute('data-filter');
+                if (filterTextarea) {
+                    filterTextarea.value = JSON.stringify(JSON.parse(filterData), null, 2);
+                }
+            });
+        });
+    }
+
+    // Setup automation toggle functionality
+    setupAutomationToggle() {
+        const automationToggle = document.getElementById('automationEnabled');
+        const scheduleGroup = document.getElementById('scheduleGroup');
+
+        if (automationToggle && scheduleGroup) {
+            automationToggle.addEventListener('change', (e) => {
+                if (e.target.checked) {
+                    scheduleGroup.style.display = 'block';
+                    scheduleGroup.style.animation = 'fadeInUp 0.4s ease-out';
+                } else {
+                    scheduleGroup.style.display = 'none';
+                }
+            });
+        }
     }
 }
 

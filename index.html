@@ -14,14 +14,125 @@
         <header class="header">
             <div class="header-content">
                 <div class="logo">
-                    <i class="fas fa-chart-line"></i>
-                    <h1>Report Generator</h1>
+                    <div class="logo-icon">
+                        <i class="fas fa-chart-line"></i>
+                    </div>
+                    <div class="logo-text">
+                        <h1>Report Generator</h1>
+                        <div class="logo-badge">AI-Powered</div>
+                    </div>
                 </div>
                 <div class="header-subtitle">
-                    Create automated reports from transcript analysis data
+                    Create intelligent, automated reports from transcript analysis data with advanced AI insights
+                </div>
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <i class="fas fa-robot"></i>
+                        <span>AI-Enhanced</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-clock"></i>
+                        <span>Real-time</span>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure</span>
+                    </div>
                 </div>
             </div>
         </header>
+
+        <!-- Data Preview Dashboard -->
+        <div class="data-dashboard">
+            <div class="dashboard-header">
+                <h2><i class="fas fa-chart-bar"></i> Live Data Insights</h2>
+                <p>Real-time overview of your transcript analysis ecosystem</p>
+            </div>
+            <div class="dashboard-grid">
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>Academy Knowledge</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric">
+                            <span class="metric-value" id="knowledgeCount">-</span>
+                            <span class="metric-label">Features Extracted</span>
+                        </div>
+                        <div class="metric-bar">
+                            <div class="confidence-indicator">
+                                <span>Avg Confidence</span>
+                                <div class="confidence-bar">
+                                    <div class="confidence-fill" id="knowledgeConfidence"></div>
+                                </div>
+                                <span id="confidenceValue">-</span>
+                            </div>
+                        </div>
+                        <div class="quality-tags">
+                            <span class="quality-tag high-confidence">High Confidence</span>
+                            <span class="quality-tag video-linked">Video Links</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3>UX Issues</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric">
+                            <span class="metric-value" id="uxIssuesCount">-</span>
+                            <span class="metric-label">Issues Identified</span>
+                        </div>
+                        <div class="priority-breakdown">
+                            <div class="priority-item critical">
+                                <span class="priority-dot"></span>
+                                <span id="criticalIssues">-</span> Critical
+                            </div>
+                            <div class="priority-item high">
+                                <span class="priority-dot"></span>
+                                <span id="highIssues">-</span> High
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-lightbulb"></i>
+                        <h3>AI Insights</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric">
+                            <span class="metric-value" id="insightsCount">-</span>
+                            <span class="metric-label">Reports Generated</span>
+                        </div>
+                        <div class="sentiment-indicator">
+                            <span>Overall Sentiment</span>
+                            <div class="sentiment-badge" id="sentimentBadge">Analyzing...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="dashboard-card">
+                    <div class="card-header">
+                        <i class="fas fa-network-wired"></i>
+                        <h3>Knowledge Graph</h3>
+                    </div>
+                    <div class="card-content">
+                        <div class="metric">
+                            <span class="metric-value" id="entitiesCount">-</span>
+                            <span class="metric-label">Entities Mapped</span>
+                        </div>
+                        <div class="impact-breakdown">
+                            <div class="impact-item critical">Critical Impact: <span id="criticalEntities">-</span></div>
+                            <div class="impact-item high">High Impact: <span id="highEntities">-</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <!-- Main Form Container -->
         <div class="form-container">
@@ -240,91 +351,236 @@
                 <!-- Step 3: Report Configuration -->
                 <div class="step-content" data-step="3">
                     <div class="step-header">
-                        <h2><i class="fas fa-cogs"></i> Report Configuration</h2>
-                        <p>Configure your report template and output options</p>
+                        <h2><i class="fas fa-cogs"></i> Intelligent Report Configuration</h2>
+                        <p>Configure AI-powered templates, automation, and advanced analytics</p>
                     </div>
 
                     <div class="form-group">
                         <label for="reportTemplate">
-                            <i class="fas fa-file-alt"></i>
-                            Report Template *
+                            <i class="fas fa-magic"></i>
+                            AI Report Template *
                         </label>
-                        <select id="reportTemplate" name="reportTemplate" required class="form-control">
-                            <option value="">Select a template...</option>
-                            <option value="Detailed Analysis">Detailed Analysis</option>
-                            <option value="Executive Summary">Executive Summary</option>
-                            <option value="Feature Breakdown">Feature Breakdown</option>
-                            <option value="Issue Priority Matrix">Issue Priority Matrix</option>
-                            <option value="Trend Analysis">Trend Analysis</option>
-                            <option value="Custom">Custom</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label>
-                            <i class="fas fa-download"></i>
-                            Output Formats
-                        </label>
-                        <div class="checkbox-group">
-                            <div class="checkbox-card">
-                                <input type="checkbox" id="pdf" name="outputFormat" value="PDF Report" checked>
-                                <label for="pdf" class="checkbox-label">
-                                    <i class="fas fa-file-pdf"></i>
-                                    PDF Report
+                        <div class="template-cards">
+                            <div class="template-card" data-template="Detailed Analysis">
+                                <input type="radio" id="template1" name="reportTemplate" value="Detailed Analysis" required>
+                                <label for="template1">
+                                    <div class="template-icon"><i class="fas fa-microscope"></i></div>
+                                    <div class="template-info">
+                                        <h4>Detailed Analysis</h4>
+                                        <p>Deep insights with AI-generated action items and confidence scoring</p>
+                                        <div class="template-features">
+                                            <span class="feature-tag">AI Insights</span>
+                                            <span class="feature-tag">Confidence Metrics</span>
+                                        </div>
+                                    </div>
                                 </label>
                             </div>
-                            <div class="checkbox-card">
-                                <input type="checkbox" id="excel" name="outputFormat" value="Excel Spreadsheet">
-                                <label for="excel" class="checkbox-label">
-                                    <i class="fas fa-file-excel"></i>
-                                    Excel Spreadsheet
+                            
+                            <div class="template-card" data-template="Executive Summary">
+                                <input type="radio" id="template2" name="reportTemplate" value="Executive Summary" required>
+                                <label for="template2">
+                                    <div class="template-icon"><i class="fas fa-chart-pie"></i></div>
+                                    <div class="template-info">
+                                        <h4>Executive Summary</h4>
+                                        <p>High-level overview with sentiment analysis and priority recommendations</p>
+                                        <div class="template-features">
+                                            <span class="feature-tag">Sentiment Analysis</span>
+                                            <span class="feature-tag">Priority Matrix</span>
+                                        </div>
+                                    </div>
                                 </label>
                             </div>
-                            <div class="checkbox-card">
-                                <input type="checkbox" id="json" name="outputFormat" value="JSON Data">
-                                <label for="json" class="checkbox-label">
-                                    <i class="fas fa-code"></i>
-                                    JSON Data
-                                </label>
-                            </div>
-                            <div class="checkbox-card">
-                                <input type="checkbox" id="csv" name="outputFormat" value="CSV Export">
-                                <label for="csv" class="checkbox-label">
-                                    <i class="fas fa-file-csv"></i>
-                                    CSV Export
+                            
+                            <div class="template-card" data-template="Knowledge Graph Report">
+                                <input type="radio" id="template3" name="reportTemplate" value="Knowledge Graph Report" required>
+                                <label for="template3">
+                                    <div class="template-icon"><i class="fas fa-network-wired"></i></div>
+                                    <div class="template-info">
+                                        <h4>Knowledge Graph Report</h4>
+                                        <p>Entity relationships and business impact analysis</p>
+                                        <div class="template-features">
+                                            <span class="feature-tag">Entity Mapping</span>
+                                            <span class="feature-tag">Impact Analysis</span>
+                                        </div>
+                                    </div>
                                 </label>
                             </div>
                         </div>
                     </div>
 
-                    <div class="form-group" id="advancedFiltersGroup" style="display: none;">
-                        <label for="advancedFilters">
-                            <i class="fas fa-filter"></i>
-                            Advanced Filters
+                    <!-- AI Enhancement Options -->
+                    <div class="ai-enhancement-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-brain"></i> AI Enhancement Options</h3>
+                            <p>Leverage advanced AI capabilities for deeper insights</p>
+                        </div>
+                        
+                        <div class="enhancement-grid">
+                            <div class="enhancement-card">
+                                <input type="checkbox" id="aiSuggestions" name="aiFeatures" value="suggestions" checked>
+                                <label for="aiSuggestions">
+                                    <i class="fas fa-lightbulb"></i>
+                                    <div class="enhancement-content">
+                                        <strong>AI Suggested Actions</strong>
+                                        <span>Generate actionable recommendations based on insights</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="enhancement-card">
+                                <input type="checkbox" id="sentimentAnalysis" name="aiFeatures" value="sentiment" checked>
+                                <label for="sentimentAnalysis">
+                                    <i class="fas fa-smile"></i>
+                                    <div class="enhancement-content">
+                                        <strong>Sentiment Analysis</strong>
+                                        <span>Analyze overall sentiment and emotional tone</span>
+                                    </div>
+                                </label>
+                            </div>
+                            
+                            <div class="enhancement-card">
+                                <input type="checkbox" id="trendAnalysis" name="aiFeatures" value="trends">
+                                <label for="trendAnalysis">
+                                    <i class="fas fa-chart-line"></i>
+                                    <div class="enhancement-content">
+                                        <strong>Trend Detection</strong>
+                                        <span>Identify patterns and trends across time periods</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Output Configuration -->
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-download"></i>
+                            Output Formats & Distribution
                         </label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-card enhanced">
+                                <input type="checkbox" id="pdf" name="outputFormat" value="PDF Report" checked>
+                                <label for="pdf" class="checkbox-label">
+                                    <i class="fas fa-file-pdf"></i>
+                                    <div class="output-info">
+                                        <strong>PDF Report</strong>
+                                        <span>Professional formatted report with charts</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="checkbox-card enhanced">
+                                <input type="checkbox" id="excel" name="outputFormat" value="Excel Spreadsheet">
+                                <label for="excel" class="checkbox-label">
+                                    <i class="fas fa-file-excel"></i>
+                                    <div class="output-info">
+                                        <strong>Excel Spreadsheet</strong>
+                                        <span>Data tables with pivot analysis</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="checkbox-card enhanced">
+                                <input type="checkbox" id="powerbi" name="outputFormat" value="PowerBI Dataset">
+                                <label for="powerbi" class="checkbox-label">
+                                    <i class="fas fa-chart-bar"></i>
+                                    <div class="output-info">
+                                        <strong>PowerBI Dataset</strong>
+                                        <span>Interactive dashboards and visualizations</span>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="checkbox-card enhanced">
+                                <input type="checkbox" id="email" name="outputFormat" value="Email Summary">
+                                <label for="email" class="checkbox-label">
+                                    <i class="fas fa-envelope"></i>
+                                    <div class="output-info">
+                                        <strong>Email Summary</strong>
+                                        <span>Automated distribution to stakeholders</span>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Automation Settings -->
+                    <div class="automation-section">
+                        <div class="section-header">
+                            <h3><i class="fas fa-robot"></i> Automation & Scheduling</h3>
+                            <p>Set up intelligent automation for your reports</p>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="automationEnabled">
+                                    <i class="fas fa-magic"></i>
+                                    Enable Automation
+                                </label>
+                                <div class="toggle-container">
+                                    <input type="checkbox" id="automationEnabled" name="automationEnabled" class="toggle-input">
+                                    <label for="automationEnabled" class="toggle-label">
+                                        <span class="toggle-slider"></span>
+                                    </label>
+                                    <div class="toggle-text">
+                                        <span>Automatically generate reports based on schedule</span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="form-group" id="scheduleGroup" style="display: none;">
+                                <label for="scheduledRun">
+                                    <i class="fas fa-clock"></i>
+                                    Schedule Frequency
+                                </label>
+                                <select id="scheduledRun" name="scheduledRun" class="form-control">
+                                    <option value="Manual Only">Manual Only</option>
+                                    <option value="Daily">Daily</option>
+                                    <option value="Weekly" selected>Weekly</option>
+                                    <option value="Monthly">Monthly</option>
+                                    <option value="On Data Update">On Data Update</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Advanced Filters -->
+                    <div class="form-group" id="advancedFiltersGroup">
+                        <label for="advancedFilters">
+                            <i class="fas fa-sliders-h"></i>
+                            Quality & Confidence Filters
+                        </label>
+                        <div class="filter-presets">
+                            <button type="button" class="filter-preset" data-filter='{"confidenceScore": ">=0.8"}'>
+                                <i class="fas fa-star"></i> High Confidence Only
+                            </button>
+                            <button type="button" class="filter-preset" data-filter='{"qualityFlags": ["High Confidence", "Has Video Link"]}'>
+                                <i class="fas fa-video"></i> Premium Quality
+                            </button>
+                            <button type="button" class="filter-preset" data-filter='{"processingStatus": "Reviewed", "isBeamRelevant": true}'>
+                                <i class="fas fa-check-circle"></i> Reviewed Content
+                            </button>
+                        </div>
                         <textarea 
                             id="advancedFilters" 
                             name="advancedFilters" 
                             class="form-control"
                             rows="4"
-                            placeholder='{"confidenceScore": ">0.8", "featureType": "AI Feature"}'
+                            placeholder='{"confidenceScore": ">=0.8", "qualityFlags": ["High Confidence"], "isBeamRelevant": true}'
                         ></textarea>
-                        <div class="field-help">JSON configuration for additional filtering criteria</div>
+                        <div class="field-help">Advanced filtering using confidence scores, quality flags, and content relevance</div>
                     </div>
 
                     <div class="form-group">
                         <label for="reportRecipients">
-                            <i class="fas fa-envelope"></i>
-                            Report Recipients (Optional)
+                            <i class="fas fa-users"></i>
+                            Report Recipients
                         </label>
                         <textarea 
                             id="reportRecipients" 
                             name="reportRecipients" 
                             class="form-control"
                             rows="3"
-                            placeholder="user@example.com&#10;manager@example.com"
+                            placeholder="stakeholder@company.com&#10;team-lead@company.com&#10;manager@company.com"
                         ></textarea>
-                        <div class="field-help">Email addresses for report distribution (one per line)</div>
+                        <div class="field-help">Email addresses for automated report distribution (one per line)</div>
                     </div>
                 </div>
 
