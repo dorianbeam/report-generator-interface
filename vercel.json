@@ -1,0 +1,30 @@
+{
+  "functions": {
+    "api/airtable-proxy.js": {
+      "maxDuration": 30
+    }
+  },
+  "env": {
+    "AIRTABLE_API_KEY": "@airtable_api_key",
+    "AIRTABLE_BASE_ID": "@airtable_base_id"
+  },
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "X-Frame-Options",
+          "value": "DENY"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        }
+      ]
+    }
+  ]
+}

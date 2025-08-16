@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Generator - Transcript Analysis</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <h1>Report Generator</h1>
+                </div>
+                <div class="header-subtitle">
+                    Create automated reports from transcript analysis data
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Form Container -->
+        <div class="form-container">
+            <form id="reportForm" class="report-form">
+                <!-- Progress Indicator -->
+                <div class="progress-indicator">
+                    <div class="step active" data-step="1">
+                        <div class="step-number">1</div>
+                        <div class="step-label">Basic Info</div>
+                    </div>
+                    <div class="step" data-step="2">
+                        <div class="step-number">2</div>
+                        <div class="step-label">Data Source</div>
+                    </div>
+                    <div class="step" data-step="3">
+                        <div class="step-number">3</div>
+                        <div class="step-label">Configuration</div>
+                    </div>
+                </div>
+
+                <!-- Step 1: Basic Information -->
+                <div class="step-content active" data-step="1">
+                    <div class="step-header">
+                        <h2><i class="fas fa-info-circle"></i> Basic Information</h2>
+                        <p>Start by providing basic details for your report</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportTitle">
+                            <i class="fas fa-heading"></i>
+                            Report Title *
+                        </label>
+                        <input 
+                            type="text" 
+                            id="reportTitle" 
+                            name="reportTitle" 
+                            required
+                            placeholder="Enter a descriptive report name"
+                            class="form-control"
+                        >
+                        <div class="field-help">Use a clear, descriptive name for easy identification</div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="dateStart">
+                                <i class="fas fa-calendar-alt"></i>
+                                Date Range Start *
+                            </label>
+                            <input 
+                                type="date" 
+                                id="dateStart" 
+                                name="dateStart" 
+                                required
+                                class="form-control"
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="dateEnd">
+                                <i class="fas fa-calendar-check"></i>
+                                Date Range End *
+                            </label>
+                            <input 
+                                type="date" 
+                                id="dateEnd" 
+                                name="dateEnd" 
+                                required
+                                class="form-control"
+                            >
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportPriority">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Report Priority
+                        </label>
+                        <select id="reportPriority" name="reportPriority" class="form-control">
+                            <option value="Normal">Normal</option>
+                            <option value="Low">Low</option>
+                            <option value="High">High</option>
+                            <option value="Urgent">Urgent</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Step 2: Data Source Selection -->
+                <div class="step-content" data-step="2">
+                    <div class="step-header">
+                        <h2><i class="fas fa-database"></i> Data Source Selection</h2>
+                        <p>Choose your data sources and categories</p>
+                    </div>
+
+                    <!-- Multi-source Toggle -->
+                    <div class="toggle-group">
+                        <div class="toggle-container">
+                            <input type="checkbox" id="multiSource" name="multiSource" class="toggle-input">
+                            <label for="multiSource" class="toggle-label">
+                                <span class="toggle-slider"></span>
+                            </label>
+                            <div class="toggle-text">
+                                <strong>Multi-Source Report</strong>
+                                <span>Combine data from both Beam Knowledge and UX Issues</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Single Data Source Selection -->
+                    <div id="singleSourceContainer" class="data-source-container">
+                        <div class="form-group">
+                            <label>
+                                <i class="fas fa-server"></i>
+                                Primary Data Source *
+                            </label>
+                            <div class="radio-group">
+                                <div class="radio-card">
+                                    <input type="radio" id="beamKnowledge" name="dataSource" value="Beam Knowledge" required>
+                                    <label for="beamKnowledge" class="radio-label">
+                                        <i class="fas fa-brain"></i>
+                                        <div class="radio-content">
+                                            <strong>Beam Knowledge</strong>
+                                            <span>Feature knowledge and academy content</span>
+                                        </div>
+                                    </label>
+                                </div>
+                                <div class="radio-card">
+                                    <input type="radio" id="uxIssues" name="dataSource" value="UX issues" required>
+                                    <label for="uxIssues" class="radio-label">
+                                        <i class="fas fa-bug"></i>
+                                        <div class="radio-content">
+                                            <strong>UX Issues</strong>
+                                            <span>User experience issues and feedback</span>
+                                        </div>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category Filters -->
+                    <div id="categoryContainer">
+                        <div id="uxCategoryGroup" class="category-group" style="display: none;">
+                            <div class="form-group">
+                                <label class="category-section-label">
+                                    <i class="fas fa-tags"></i>
+                                    UX Issue Categories
+                                    <span class="category-count" id="uxCategoryCount">(0 selected)</span>
+                                </label>
+                                <div class="category-selection-container">
+                                    <div class="category-search-bar">
+                                        <i class="fas fa-search"></i>
+                                        <input 
+                                            type="text" 
+                                            id="uxCategorySearch" 
+                                            placeholder="Search UX categories..."
+                                            class="category-search-input"
+                                        >
+                                    </div>
+                                    <div class="category-actions">
+                                        <button type="button" class="category-action-btn" onclick="selectAllCategories('ux')">
+                                            <i class="fas fa-check-double"></i> Select All
+                                        </button>
+                                        <button type="button" class="category-action-btn" onclick="selectNoneCategories('ux')">
+                                            <i class="fas fa-times"></i> Clear All
+                                        </button>
+                                    </div>
+                                    <div id="uxCategoriesCheckboxes" class="category-checkboxes">
+                                        <div class="category-loading">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            Loading categories...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field-help">Select specific UX issue categories to include in your report</div>
+                            </div>
+                        </div>
+
+                        <div id="academyCategoryGroup" class="category-group" style="display: none;">
+                            <div class="form-group">
+                                <label class="category-section-label">
+                                    <i class="fas fa-graduation-cap"></i>
+                                    Academy Knowledge Categories
+                                    <span class="category-count" id="academyCategoryCount">(0 selected)</span>
+                                </label>
+                                <div class="category-selection-container">
+                                    <div class="category-search-bar">
+                                        <i class="fas fa-search"></i>
+                                        <input 
+                                            type="text" 
+                                            id="academyCategorySearch" 
+                                            placeholder="Search knowledge categories..."
+                                            class="category-search-input"
+                                        >
+                                    </div>
+                                    <div class="category-actions">
+                                        <button type="button" class="category-action-btn" onclick="selectAllCategories('academy')">
+                                            <i class="fas fa-check-double"></i> Select All
+                                        </button>
+                                        <button type="button" class="category-action-btn" onclick="selectNoneCategories('academy')">
+                                            <i class="fas fa-times"></i> Clear All
+                                        </button>
+                                    </div>
+                                    <div id="academyCategoriesCheckboxes" class="category-checkboxes">
+                                        <div class="category-loading">
+                                            <i class="fas fa-spinner fa-spin"></i>
+                                            Loading categories...
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="field-help">Select knowledge categories to include in your report</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Step 3: Report Configuration -->
+                <div class="step-content" data-step="3">
+                    <div class="step-header">
+                        <h2><i class="fas fa-cogs"></i> Report Configuration</h2>
+                        <p>Configure your report template and output options</p>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportTemplate">
+                            <i class="fas fa-file-alt"></i>
+                            Report Template *
+                        </label>
+                        <select id="reportTemplate" name="reportTemplate" required class="form-control">
+                            <option value="">Select a template...</option>
+                            <option value="Detailed Analysis">Detailed Analysis</option>
+                            <option value="Executive Summary">Executive Summary</option>
+                            <option value="Feature Breakdown">Feature Breakdown</option>
+                            <option value="Issue Priority Matrix">Issue Priority Matrix</option>
+                            <option value="Trend Analysis">Trend Analysis</option>
+                            <option value="Custom">Custom</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>
+                            <i class="fas fa-download"></i>
+                            Output Formats
+                        </label>
+                        <div class="checkbox-group">
+                            <div class="checkbox-card">
+                                <input type="checkbox" id="pdf" name="outputFormat" value="PDF Report" checked>
+                                <label for="pdf" class="checkbox-label">
+                                    <i class="fas fa-file-pdf"></i>
+                                    PDF Report
+                                </label>
+                            </div>
+                            <div class="checkbox-card">
+                                <input type="checkbox" id="excel" name="outputFormat" value="Excel Spreadsheet">
+                                <label for="excel" class="checkbox-label">
+                                    <i class="fas fa-file-excel"></i>
+                                    Excel Spreadsheet
+                                </label>
+                            </div>
+                            <div class="checkbox-card">
+                                <input type="checkbox" id="json" name="outputFormat" value="JSON Data">
+                                <label for="json" class="checkbox-label">
+                                    <i class="fas fa-code"></i>
+                                    JSON Data
+                                </label>
+                            </div>
+                            <div class="checkbox-card">
+                                <input type="checkbox" id="csv" name="outputFormat" value="CSV Export">
+                                <label for="csv" class="checkbox-label">
+                                    <i class="fas fa-file-csv"></i>
+                                    CSV Export
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-group" id="advancedFiltersGroup" style="display: none;">
+                        <label for="advancedFilters">
+                            <i class="fas fa-filter"></i>
+                            Advanced Filters
+                        </label>
+                        <textarea 
+                            id="advancedFilters" 
+                            name="advancedFilters" 
+                            class="form-control"
+                            rows="4"
+                            placeholder='{"confidenceScore": ">0.8", "featureType": "AI Feature"}'
+                        ></textarea>
+                        <div class="field-help">JSON configuration for additional filtering criteria</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="reportRecipients">
+                            <i class="fas fa-envelope"></i>
+                            Report Recipients (Optional)
+                        </label>
+                        <textarea 
+                            id="reportRecipients" 
+                            name="reportRecipients" 
+                            class="form-control"
+                            rows="3"
+                            placeholder="user@example.com&#10;manager@example.com"
+                        ></textarea>
+                        <div class="field-help">Email addresses for report distribution (one per line)</div>
+                    </div>
+                </div>
+
+                <!-- Navigation Buttons -->
+                <div class="form-navigation">
+                    <button type="button" id="prevBtn" class="btn btn-secondary" style="display: none;">
+                        <i class="fas fa-arrow-left"></i> Previous
+                    </button>
+                    <button type="button" id="nextBtn" class="btn btn-primary">
+                        Next <i class="fas fa-arrow-right"></i>
+                    </button>
+                    <button type="submit" id="submitBtn" class="btn btn-success" style="display: none;">
+                        <i class="fas fa-rocket"></i> Create Report
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Status Messages -->
+        <div id="messageContainer" class="message-container"></div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay" style="display: none;">
+            <div class="loading-content">
+                <div class="spinner"></div>
+                <div class="loading-text">Creating your report...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration and Scripts -->
+    <script src="config.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

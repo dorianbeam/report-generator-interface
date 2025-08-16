@@ -1,0 +1,30 @@
+{
+  "name": "report-generator-interface",
+  "version": "2.0.0",
+  "description": "Beautiful web interface for creating automated reports from Airtable transcript analysis data - Optimized for Vercel",
+  "main": "index.html",
+  "scripts": {
+    "dev": "vercel dev",
+    "build": "echo 'Static files ready for Vercel deployment'",
+    "deploy": "vercel --prod"
+  },
+  "keywords": [
+    "airtable",
+    "reports",
+    "automation",
+    "n8n",
+    "transcript-analysis",
+    "web-interface",
+    "vercel",
+    "serverless"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "vercel": "^37.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
